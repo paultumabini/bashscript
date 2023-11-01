@@ -1,7 +1,0 @@
-#!/bin/bash
-
-source ~/Dev/Projects/django/aim/scrape/venv/bin/activate
-cd ~/Dev/Projects/django/aim/scrape/webscraping/scrapebucket
-
-scrapy crawl tadvantage -a url=https://www.marlboroughford.com/
-scrapy crawl tadvantage -a url=https://www.bridgecitychrysler.com/
