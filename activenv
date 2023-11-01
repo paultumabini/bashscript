@@ -1,0 +1,60 @@
+#!/bin/bash
+
+path=~/Dev/Projects/django/aim
+
+call_scrape() {    
+    . $path/scrape/venv/bin/activate
+    cd $path/scrape       
+    echo "ACTIVATING SCRAPEBUCKET VENV"
+    $SHELL     
+}
+
+call_vdpurl() {    
+    . $path/vdp/venv/bin/activate
+    cd $path/vdp     
+    echo "ACTIVATING VDP URLS VENV"
+    $SHELL 
+    
+}
+
+run_script() {
+    local arg=$@
+    local app=
+
+    if [[ $# -eq 0 ]] # no arguments
+    then    
+        while [[ -z "${app}" ]] # if empty
+            do  
+                echo "Please enter app name:"
+                read name
+                app=$name
+
+                if [[ $app == "scrape" ]]
+                then
+                    call_scrape 
+                elif [[ $app == "vdpurl" ]]
+                then
+                    call_vdpurl  
+                else  
+                    if [[ -z "${app}" ]] # if still empty loop continue
+                    then                                             
+                        continue                        
+                    else             
+                        echo -e "The app name does not exist. \nPlease check and try again"
+                        break
+                    fi                                 
+                fi            
+            done            
+
+    elif [[ $arg == "scrape" ]]
+    then
+        call_scrape
+    elif [[ $arg == "vdpurl" ]]
+    then 
+        call_vdpurl        
+    else        
+        echo -e "The name does not exist or the app name is invalid. \nPlease check and try again"
+    fi
+}
+
+run_script $@ # pass param to run script.

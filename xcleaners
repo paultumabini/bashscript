@@ -1,0 +1,9 @@
+#!/bin/bash
+
+path=~/Dev/Projects/django/aim
+
+#clean vpd and scrape logs if more than 1 day
+find $path/vdp/logs -mtime +1 -type f -delete
+find $path/vdp/output_csv -mtime +1 -type f -delete
+find $path/scrape/logs -mtime +1 -type f -delete
+find ~/mybin/logs -mtime +1 -type f -delete

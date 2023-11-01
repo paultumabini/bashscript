@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# update google sheets data via gsapi
+source ~/Dev/Projects/python_scripts/venv/bin/activate
+python ~/Dev/Projects/python_scripts/scripts/gsapi/dealersfile_bot.py
+
+#update webscrape dealer account status via aim api
+source ~/Dev/Projects/django/aim/scrape/venv/bin/activate
+python ~/Dev/Projects/django/aim/scrape/webscraping/project/api/aimapi.py
+
+#update vdp urls dealer account status via aim api
+source ~/Dev/Projects/django/aim/vdp/venv/bin/activate
+python ~/Dev/Projects/django/aim/vdp/vdpimporthelper/vdpurls/aimapi.py

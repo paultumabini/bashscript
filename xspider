@@ -1,0 +1,65 @@
+#!/bin/bash
+
+# time=`date "+%Y.%m.%d_%H:%M:%S.%3N"`
+date=`date "+%Y_%m_%d"`
+path=~/Dev/Projects/django/aim/scrape
+
+SECONDS=0
+
+# activate venv
+source $path/venv/bin/activate
+   
+# declare spider variable
+declare -a spiders=(
+                    "webstager"
+                    "lynxdigital"    
+                    "nabthat"    
+                    "flexdealer"  
+                    "autojini"    
+                    "rehash"    
+                    "edealer"    
+                    "sm360"    
+                    "wpastra"    
+                    "tadvantage"    
+                    "convertus"
+                    "dealersiteplus"    
+                    "dealerdotcom" 
+                    "foxdealer"
+                    "d2cmedia" 
+                   )
+    
+for spider in "${spiders[@]}"
+do   
+   python3 $path/webscraping/runspider.py -s $spider >> $path/logs/$spider"_"$date.log
+done
+
+duration=$SECONDS
+echo "$(($duration / 60)) minutes and $(($duration % 60)) seconds elapsed."
+
+## if each line
+# python3 $scrape_dir/webscraping/runspider.py -s webstager 
+# python3 $scrape_dir/webscraping/runspider.py -s lynxdigital 
+# python3 $scrape_dir/webscraping/runspider.py -s nabthat 
+# ...
+
+# you can add log however, this is not printing out on the terminal, if you want to print out, remove "2>$1"
+# >> $path/logs/$spider"_"$date.log
+
+
+# Define each array and then add it to the main one
+# spider1=("15 16 * * *" "webstager")
+# spider2=("30 16 * * *" "lynxdigital")
+# spiders=(
+#   spider1[@]
+#   spider2[@]
+# )
+
+# Loop and print it.  Using offset and length to extract values
+
+# for ((i=0; i<${#spiders[@]}; i++));
+# do
+#   sched=${!spiders[i]:0:1}
+#   spider=${!spiders[i]:1:1}
+#   echo "NAME ${sched} ${spider}"
+# done
+

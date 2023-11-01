@@ -1,0 +1,8 @@
+#!/bin/bash
+
+current_time=$(date +%Y.%m.%d_%H:%M:%S.%3N)
+current_date=$(date +%Y_%m_%d)
+vdp_dir=~/Dev/Projects/django/aim/vdp
+
+source $vdp_dir/venv/bin/activate
+python $vdp_dir/vdpimporthelper/vdpurls/ftpfeedparser/ftpscript.py >> $vdp_dir/logs/vdp_urls_$current_date.log 2>&1
